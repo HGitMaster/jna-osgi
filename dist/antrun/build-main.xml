@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <property name="targetName" value="jna-3.2.7"/>
+  <property name="destDir" value="target"/>
+  <attachartifact file="dist/src.zip" classifier="sources" type="jar"/>
+  <ant antfile="ant.xml">
+    <target name="deployAtTargetDir"/>
+  </ant>
+</target>
+</project>

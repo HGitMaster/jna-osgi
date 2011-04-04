@@ -1,0 +1,54 @@
+
+
+OSN=$(shell uname | sed -e "s/\(CYGWIN\|MINGW32\|WindowsNT\).*/win32/g" \
+	-e "s/SunOS.*/solaris/g" \
+	-e "s/FreeBSD.*/freebsd/g" \
+	-e "s/OpenBSD.*/openbsd/g" \
+	-e "s/Darwin.*/darwin/g" \
+	-e "s/Linux.*/linux/g")
+
+FILES:=$(shell ls *.c | sed "s/c/C/g")
+ARC:=$(shell uname -m | sed "s/x/X/g")
+
+
+MyTarget=build/mt/build.a
+MT2=A
+FFI_BUILD=../build2
+ifeq ($(OSN),win32)
+OSW=Windows
+else
+OSW=Not Windows
+endif
+
+#ARCH=$(shell uname -m | sed "s/i.86/i386/g")
+
+all:  
+	@echo Hello $(OSN) and OSW = $(OSW) ARC=$(ARC)
+	@echo Files = $(FILES)
+
+$(MyTarget):
+	@mkdir -p "../build/mt
+
+have_makefile = $(wildcard $(FFI_BUILD))
+
+AA=AA
+
+ifeq (A, b)
+	AA=B 
+T2:
+	@echo Running T2
+else 
+	AA=C
+endif
+
+
+
+
+$(MT2): T2
+	@rm -r -f "../x"
+	@mkdir "../x"
+	echo $(strip $(have_makefile))
+	echo $(AA)	
+
+
+	
