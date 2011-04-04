@@ -25,6 +25,12 @@
   <build>
     <directory>${targetDir}</directory>
 	 <sourceDirectory>src</sourceDirectory>
+
+	 <resources>
+      <resource>
+        <directory>dist/native</directory>	
+      </resource>
+    </resources>
     <plugins>
       <!-- fake out maven and install the binary artifact -->
     
