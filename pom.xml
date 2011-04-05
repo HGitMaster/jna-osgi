@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>net.java.dev.jna</groupId>
   <artifactId>com.harmanbecker.jna</artifactId>
-  <packaging>jar</packaging>
+  <packaging>bundle</packaging>
   <version>3.2.7</version>
   <name>Java Native Access</name>
     
@@ -32,38 +32,23 @@
       </resource>
     </resources>
     <plugins>
-      <!-- fake out maven and install the binary artifact -->
-              
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-antrun-plugin</artifactId>
-        <version>1.6</version>
-        <executions>
-            <execution>
-               <phase>verify</phase>
-               <id>attach-artifact</id>
-               <configuration>
-                  <target>
-                      <!--<attachartifact  file="dist/jna.jar" />-->
-                      
-                      <!--<attachartifact  file="dist/src-mvn.zip" classifier="sources" type="jar"/>-->
-                     <property name="targetName" value="${project.build.finalName}"/>
-                     <property name="destDir" value="${targetDir}" />
-                     <attachartifact  file="dist/src.zip" classifier="sources" type="jar"/>
-                     <ant antfile="build.xml">
-                        <target name="createOsgiManifest"/>
-                     </ant>
-                      
-                  </target>
-               </configuration>
-               <goals>
-                  <goal>run</goal>
-               </goals>
-            </execution>
-         </executions>
-        
-      </plugin>
-      
+         <groupId>org.apache.felix</groupId>
+         <artifactId>maven-bundle-plugin</artifactId>
+         <version>2.1.0</version>
+         <extensions>true</extensions>
+         <configuration>
+            <instructions>
+               <Bundle-SymbolicName>com.springsource.com.sun.jna</Bundle-SymbolicName>
+               <Bundle-Version>3.2.7</Bundle-Version>
+               <Bundle-Name>Java Native Access (JNA)</Bundle-Name>
+               <Bundle-ManifestVersion>2</Bundle-ManifestVersion>
+               <Export-Package>com.sun.jna;version="3.2.7",com.sun.jna.darwin;version="3.2.7",com.sun.jna.ptr;version="3.2.7";uses:="com.sun.jna",com.sun.jna.win32;version="3.2.7";uses:="com.sun.jna"</Export-Package>
+               <Main-Class>com.sun.jna.Native</Main-Class>
+               <Import-Package/>
+            </instructions>
+         </configuration>
+        </plugin>
       
     </plugins>
     <extensions>
