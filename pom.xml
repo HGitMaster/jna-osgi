@@ -8,7 +8,7 @@
   <packaging>bundle</packaging>
   <version>3.2.7</version>
   <name>Java Native Access</name>
-    
+
    <distributionManagement>
     <repository>
       <uniqueVersion>false</uniqueVersion>
@@ -16,19 +16,19 @@
       <url>java-net:/maven2-repository/trunk/repository/</url>
     </repository>
   </distributionManagement>
-  
-  
+
+
   <properties>
       <targetDir>target</targetDir>
   </properties>
 
   <build>
     <directory>${targetDir}</directory>
-	 <sourceDirectory>src</sourceDirectory>
+         <sourceDirectory>src</sourceDirectory>
 
-	 <resources>
+         <resources>
       <resource>
-        <directory>dist/native</directory>	
+        <directory>dist/native</directory>
       </resource>
     </resources>
     <plugins>
@@ -45,11 +45,12 @@
                <Bundle-ManifestVersion>2</Bundle-ManifestVersion>
                <Export-Package>com.sun.jna;version="3.2.7",com.sun.jna.darwin;version="3.2.7",com.sun.jna.ptr;version="3.2.7";uses:="com.sun.jna",com.sun.jna.win32;version="3.2.7";uses:="com.sun.jna"</Export-Package>
                <Main-Class>com.sun.jna.Native</Main-Class>
+               <Build-Identifier>${env.BUILD_NUMBER}</Build-Identifier>
                <Import-Package/>
             </instructions>
          </configuration>
         </plugin>
-      
+
     </plugins>
     <extensions>
       <extension>
@@ -59,7 +60,7 @@
       </extension>
     </extensions>
   </build>
-  
+
   <repositories>
     <repository>
       <id>maven2-repository.dev.java.net</id>
